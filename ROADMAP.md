@@ -27,6 +27,7 @@
 - Keep hardware selection within the student's confirmed budget and access constraints; do not assume a purchase.
 - Calibrate motion and sensing in a small, controlled test area.
 - Connect robot telemetry and commands to the control console if feasible.
+- Treat camera-assisted target recognition as an optional extension; see `CAMERA_EXTENSION_PLAN.md`. Start with a known visual marker and safe approach, not arbitrary photo-to-coordinate navigation.
 
 ## Stage 5 — Real-world evaluation and report
 
@@ -40,3 +41,4 @@
 - Stage 2: public simulator is deployed on GitHub Pages and opened in desktop and phone-sized browser layouts. It includes six fixed presets, 18 deterministic random maps across three requested densities, selectable 15 × 15 / 25 × 25 grids, seed-derived start/heading/goal, planner counters, repeated batch comparison, and CSV records with reconstructable map configuration. The map generator records its effective seed after deterministic retries to ensure a route exists in generated cases.
 - Stage 3: the end-to-end benchmark has completed at both grid sizes (480 rows each), with raw data, paired comparisons, and stratified summaries in `EXPERIMENT_RESULTS_2026-10-09.md` and `STRATIFIED_ANALYSIS_2026-10-09.md`. A separate controlled-update replay pilot is implemented and recorded in `CONTROLLED_REPLAY_PILOT_2026-10-09.md`. In both experiments, correctness checks passed, D* Lite generally expanded fewer nodes, and its planning time was higher in this implementation/session. The replay currently has only four hand-designed traces, so expand the independent trace set and record browser/device metadata before treating it as final evidence. Physical robot stages remain unstarted.
 - Stages 4–5: not started.
+- Camera extension: feasibility and scope documented in `CAMERA_EXTENSION_PLAN.md`; no camera or vision API is currently required by the core simulator.

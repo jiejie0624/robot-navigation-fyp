@@ -56,3 +56,4 @@ Use deterministic maps or recorded random seeds so results can be reproduced. Re
 - Physical robot hardware, sensor type, room scale, budget, and university format remain undecided.
 - Real hardware will introduce localization drift, sensor errors, turning and wheel-motion errors; the simulator alone cannot validate those effects.
 - The current prototype is a discrete four-neighbor grid with a directional sensor that scans up to three cells. This is a simulation assumption, not a physical sensor specification.
+- A camera is an optional later extension, not part of the current core objective. See `CAMERA_EXTENSION_PLAN.md`. A photo detector must not be assumed to produce an accurate map coordinate without calibration and robot localization.
