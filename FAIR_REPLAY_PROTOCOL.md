@@ -47,10 +47,12 @@ Validate each returned path in a planner-independent checker. A path must start 
 
 ## Implementation plan
 
-1. Add a deterministic replay-trace schema and sample trace files.
-2. Add a pure replay runner that applies the trace to each planner and records one row per case/checkpoint/planner.
-3. Add an independent path validator and reject invalid traces before execution.
-4. Add replay-specific CSV analysis that pairs by trace ID and checkpoint ID.
-5. Run a small pilot to verify trace parity and result validation; then freeze the map set and execute the planned runs.
+1. **Pilot complete:** four deterministic traces are defined in `index.html`: single blocker, sequential blockers, off-route updates, and a full-width wall that disconnects the goal after reveal.
+2. **Pilot complete:** the replay runner applies the same fixed checkpoint positions and obstacle-update list to each planner, alternates planner order across traces/repetitions, warms up once, and exports a separate replay CSV.
+3. **Pilot complete:** an independent breadth-first reachability check and path validator check each returned plan; malformed updates, occupied checkpoint positions, and occupied goals stop the run.
+4. **Pilot complete:** `analyze_replay.py` pairs records by batch, size, trace, repetition, and checkpoint, then summarizes per-trace totals without mixing replay results into the end-to-end dataset.
+5. **Pilot complete:** both grid sizes ran ten recorded repetitions. Integrity and preliminary results are recorded in `CONTROLLED_REPLAY_PILOT_2026-10-09.md`.
+
+Before treating the replay results as final evidence, add more independent trace layouts and obstacle configurations, freeze them before measuring, record browser/device metadata, and repeat the experiment in a clean session. The current four traces are an implementation pilot, not a representative map sample.
 
 Do not modify the existing batch-comparison CSV interpretation or merge replay rows into it. Keep the replay experiment as a distinct condition with its own data and results report.
