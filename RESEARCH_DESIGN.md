@@ -64,7 +64,10 @@ If the final FYP needs to isolate the incremental-search effect more tightly, ad
 - Use the generated D* Lite-minus-A* differences for trials with the same batch, map, and repeat ID. Summarize the median and spread of those differences; keep no-route results as a separate correctness category.
 - Do not treat ten repetitions on one map as ten independent maps. The independent layout count remains 24 per size.
 - Show map-level results as well as any overall summary so difficult maps cannot be hidden by many easy outcomes.
+- Add an exploratory map-family summary: five fixed reachable presets, six seeded maps at each requested density, and the single no-route preset as its own correctness case. First reduce repetitions to per-map medians, then summarize across maps so repeats are not misrepresented as independent layouts. The current output is in `STRATIFIED_ANALYSIS_2026-10-09.md`.
 - Do not declare a universal winner from a lower expansion count or one browser timing average.
+
+For a narrower comparison under identical map updates, use the separate controlled planner-replay design in `FAIR_REPLAY_PROTOCOL.md`. Prescribe the same update list and current-position query at each checkpoint for both methods. This isolates replanning computation but does not measure a robot autonomously following the planner's route; keep its data separate from the end-to-end task comparison.
 
 ## Threats to validity and limitations
 
