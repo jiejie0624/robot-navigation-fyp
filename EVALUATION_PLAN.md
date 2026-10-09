@@ -54,3 +54,10 @@ The prototype includes selectable A* and D* Lite planners, search-expansion and 
 - Across the 14 map/planner rows per method, mean expanded-node counts were 461 for A* and 183 for D* Lite. Mean planning-time observations ranged from 1.64–1.89 ms for A* and 4.60–5.05 ms for D* Lite.
 - These are prototype checks on a 15 × 15 grid, not research evidence. Timing is noisy at this scale, and D* Lite's queue implementation currently has more overhead despite fewer expanded nodes. The planners can also take different routes, so route length needs separate analysis.
 - The raw CSV from the second run is preserved at `diagnostic-benchmark-2026-10-09.csv`.
+
+### Diagnostic run after queue optimization (2026-10-09)
+
+- A third 28-run browser comparison was completed after replacing D* Lite's repeated array sorting with an indexed binary min-heap.
+- Results: 26 goal arrivals, two expected `no_route` outcomes, zero unexpected outcomes, and zero blocked attempts. Each planner had 13 successes and one expected no-route result.
+- Mean expanded nodes were 461 for A* and 183.43 for D* Lite. Mean planner times were 1.61 ms for A* and 4.71 ms for D* Lite. The heap change did not remove D* Lite's timing overhead in this small browser benchmark.
+- These values are diagnostic only; one run, 15 × 15 maps, browser timing noise, and route-length differences do not support a general performance claim. The post-optimization raw CSV is preserved in `diagnostic-benchmark-after-heap-2026-10-09.csv`.

@@ -20,8 +20,9 @@ An early browser-based simulator for a CS final-year project about indoor robot 
 - Use “比较全部场景” to run both planners on five fixed presets and nine deterministic random maps: three seeds at each of three requested obstacle densities (8%, 16%, and 24%). This creates 28 rows total.
 - Each CSV row includes the expected and observed outcome, planner, measures, grid size, sensor range, start, heading, goal, obstacle coordinates, requested density, actual density, and seed for generated maps. The random generator retries with a recorded derived seed if a generated map disconnects start and goal.
 - A raw export from the second diagnostic run is kept in [`diagnostic-benchmark-2026-10-09.csv`](diagnostic-benchmark-2026-10-09.csv); it is for debugging and reproducibility, not a research conclusion.
+- A third diagnostic export after optimizing the D* Lite priority queue is kept in [`diagnostic-benchmark-after-heap-2026-10-09.csv`](diagnostic-benchmark-after-heap-2026-10-09.csv). It again produced 26 successes, two expected no-route results, and zero unexpected outcomes; mean times were 1.61 ms for A* and 4.71 ms for D* Lite. Treat this as preliminary debugging data only.
 
-The simulator is grid-based and does not model real motors, sensor noise, or localization drift. The 28-case comparison has been run twice: all outcomes matched expectations and no blocked-cell attempts occurred. This is a prototype check, not enough evidence for a research conclusion; D* Lite's search-time overhead and route lengths still need study. Read `PROJECT_BRIEF.md`, `EVALUATION_PLAN.md`, and `ROADMAP.md` for scope and next steps.
+The simulator is grid-based and does not model real motors, sensor noise, or localization drift. The 28-case comparison has been run three times: all outcomes matched expectations and no blocked-cell attempts occurred. This is a prototype check, not enough evidence for a research conclusion; D* Lite's search-time overhead and route lengths still need study. Read `PROJECT_BRIEF.md`, `EVALUATION_PLAN.md`, and `ROADMAP.md` for scope and next steps.
 
 ## GitHub Pages visibility note
 
