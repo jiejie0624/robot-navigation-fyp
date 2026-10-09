@@ -20,9 +20,9 @@ Use a small, named set of repeatable maps rather than only hand-picked successfu
 4. Narrow corridor with a blockage.
 5. Dead end requiring the robot to reverse its chosen direction.
 6. Destination unreachable because walls or obstacles separate it from the start.
-7. Several seeded maps at low, medium, and high obstacle density.
+7. Nine seeded maps: three seeds at each requested obstacle density of 8%, 16%, and 24%. The generator records the effective seed and retries deterministically if a map disconnects start and goal.
 
-For every map, save its dimensions, obstacle coordinates, start, heading, destination, and seed (if generated).
+For every map, save its dimensions, obstacle coordinates, start, heading, destination, sensor range, requested and actual obstacle density, and seed (if generated). These fields are included in the CSV export so a map can be reconstructed.
 
 ## Measures
 
@@ -45,4 +45,4 @@ For every map, save its dimensions, obstacle coordinates, start, heading, destin
 
 ## Implementation status
 
-The current prototype includes selectable A* and D* Lite planners, search-expansion and planner-time counters, CSV export, five fixed scenario presets, and an automatic 10-run comparison (both planners on each preset). Browser verification remains outstanding. Seeded random-map generation is not implemented; scenarios are currently hand-authored or placed manually.
+The prototype includes selectable A* and D* Lite planners, search-expansion and planner-time counters, CSV export, five fixed presets, and a 28-run comparison (both planners on the five presets and nine seeded maps). The live page has been opened in desktop and phone-sized browser layouts. The comparison's algorithm outputs have not yet been accepted as research results; verify planner correctness and review the run records before drawing conclusions.

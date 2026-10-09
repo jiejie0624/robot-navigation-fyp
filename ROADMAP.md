@@ -36,7 +36,7 @@
 
 ## Status
 
-- Stage 1: in progress; initial primary sources and a draft algorithm comparison are recorded.
-- Stage 2: standalone prototype created in `index.html`; mobile touch targets and narrow-screen map layout improved. A* and D* Lite selectors, five repeatable scenario presets, experiment counters, batch comparison, and CSV export are implemented. Static review fixed sensor visibility through known obstacles. Browser verification remains: the available in-app browser rejected the local `file://` page, so the UI has not been run there.
-- Stage 3: A* and D* Lite comparison is implemented for the five presets; behavior and comparison results still need runtime verification and refinement.
+- Stage 1: in progress; initial primary sources and a draft algorithm comparison are recorded. University proposal/report requirements remain unknown.
+- Stage 2: public simulator is deployed on GitHub Pages and opened in desktop and phone-sized browser layouts. It includes five fixed presets, nine deterministic random maps across three requested densities, planner counters, batch comparison, and CSV records with reconstructable map configuration. The map generator records its effective seed after deterministic retries to ensure a route exists in generated cases.
+- Stage 3: A* and D* Lite comparison is implemented across 14 maps (28 planner runs). Algorithm outputs still need systematic correctness review before being used as evidence; timing on a small 15 × 15 grid may be noisy.
 - Stages 4–5: not started.

@@ -27,8 +27,8 @@ Do not assume a robot has already been purchased or that a particular board, sen
 
 ## Current prototype
 
-- `index.html` is the first standalone browser prototype.
-- It uses a 15 × 15 grid, a simulated forward sensor, selectable A* or D* Lite planning, repeatable scenario presets, and batch comparison with CSV export.
+- `index.html` is the first standalone browser prototype, published at https://jiejie0624.github.io/robot-navigation-fyp/.
+- It uses a 15 × 15 grid, a simulated forward sensor, selectable A* or D* Lite planning, five fixed presets, nine seeded random maps, and batch comparison with configuration-rich CSV export.
 - Obstacles placed in setup are hidden from the robot until detected.
 - The simulation uses discrete grid movement; it does not yet model wheel slip, physical sensor noise, continuous motion, or real localization.
-- The prototype has not yet been browser-verified. The available in-app browser rejected the local `file://` page; do not bypass that restriction.
+- The deployed page was checked in desktop and phone-sized browser layouts. Treat this as a UI availability check, not proof of algorithm correctness; review simulation outputs before using them as research evidence.
