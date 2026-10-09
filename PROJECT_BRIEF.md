@@ -51,7 +51,7 @@ Use deterministic maps or recorded random seeds so results can be reproduced. Re
 ## Current assumptions and open decisions
 
 - A grid-based simulator is the first implementation because it keeps the behavior visible and testable.
-- The current prototype offers A* and D* Lite with a simulated forward sensor. These are implementation choices for the prototype, not final FYP decisions.
+- The current prototype offers A* and D* Lite with a simulated forward sensor, selectable 15 × 15 / 25 × 25 map sizes, and six fixed layouts plus seeded maps. These are implementation choices for the prototype, not final FYP decisions.
 - Compare the methods only after checking project scope and literature; the research question remains a draft.
 - Physical robot hardware, sensor type, room scale, budget, and university format remain undecided.
 - Real hardware will introduce localization drift, sensor errors, turning and wheel-motion errors; the simulator alone cannot validate those effects.

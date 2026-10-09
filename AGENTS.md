@@ -28,7 +28,7 @@ Do not assume a robot has already been purchased or that a particular board, sen
 ## Current prototype
 
 - `index.html` is the first standalone browser prototype, published at https://jiejie0624.github.io/robot-navigation-fyp/.
-- It uses a 15 × 15 grid, a simulated forward sensor, selectable A* or D* Lite planning, five fixed presets, 18 seeded random maps with varied start/goal/heading, and ten repeated batch runs per map/planner pair with configuration-rich CSV export.
+- It uses selectable 15 × 15 / 25 × 25 grids, a simulated forward sensor, selectable A* or D* Lite planning, six fixed presets including a winding maze, 18 seeded random maps with varied start/goal/heading, and ten repeated batch runs per map/planner pair with configuration-rich CSV export (480 measured rows at each selected size).
 - Obstacles placed in setup are hidden from the robot until detected.
 - The simulation uses discrete grid movement; it does not yet model wheel slip, physical sensor noise, continuous motion, or real localization.
 - The deployed page was checked in desktop and phone-sized browser layouts. Treat this as a UI availability check, not proof of algorithm correctness; review simulation outputs before using them as research evidence.

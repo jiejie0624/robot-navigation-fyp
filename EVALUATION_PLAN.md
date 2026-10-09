@@ -17,10 +17,12 @@ Use a small, named set of repeatable maps rather than only hand-picked successfu
 1. Open room with a clear route.
 2. Single obstacle directly in the initial route.
 3. Long wall that requires a detour.
-4. Narrow corridor with a blockage.
-5. Dead end requiring the robot to reverse its chosen direction.
-6. Destination unreachable because walls or obstacles separate it from the start.
+4. Two corridor walls with offset openings.
+5. Alternating-opening walls that create a winding maze route.
+6. Destination unreachable because a wall separates it from the start.
 7. Eighteen seeded maps: six seeds at each requested obstacle density of 8%, 16%, and 24%. Each seed deterministically varies the start cell, heading, goal, and obstacle layout. The generator records the effective seed and retries deterministically if a map disconnects start and goal.
+
+Choose either a 15 × 15 baseline or 25 × 25 grid. Run a separate paired planner batch at each size; do not mix rows across sizes when summarizing results. The larger grid increases the traversable search space while the idealized 3-cell sensor range stays fixed.
 
 For every map, save its dimensions, obstacle coordinates, start, heading, destination, sensor range, requested and actual obstacle density, and seed (if generated). These fields are included in the CSV export so a map can be reconstructed.
 
@@ -45,21 +47,21 @@ For every map, save its dimensions, obstacle coordinates, start, heading, destin
 
 ## Next experiment-design refinement
 
-The current batch contains 23 map layouts at one 15 × 15 grid size: five fixed presets and 18 seeded maps with varied start, heading, goal, and obstacle layout. It performs one unrecorded warm-up and ten recorded repetitions for each map/planner pair, with planner order balanced across repeats. Repetitions help characterize timing noise on the same map; they do not create more independent map layouts. A 2012 position paper on incremental search notes that Repeated A* can run faster than D* Lite on easy navigation tasks with few searches and recommends more diverse testbeds. Therefore the evaluation should not assume D* Lite is faster in every condition.
+The current batch contains 24 map layouts at the selected grid size: six fixed presets and 18 seeded maps with varied start, heading, goal, and obstacle layout. It performs one unrecorded warm-up and ten recorded repetitions for each map/planner pair, with planner order balanced across repeats, for 480 rows per batch. Repetitions help characterize timing noise on the same map; they do not create more independent map layouts. A 2012 position paper on incremental search notes that Repeated A* can run faster than D* Lite on easy navigation tasks with few searches and recommends more diverse testbeds. Therefore the evaluation should not assume D* Lite is faster in every condition.
 
 Before drawing a performance conclusion:
 
 1. Keep a set of named difficulty bands: easy routes with zero or few newly discovered obstacles, moderate routes with several replans, and harder corridor/maze cases. Keep no-route tests as a separate correctness category.
-2. Run both planners on the same recorded maps and repeat each map/planner condition. Add at least one larger grid size and more structured maze/corridor layouts so results are not tied to one tiny map family. Treat ten repeats as a pilot setting, not a final sample-size decision.
+2. Run both planners on the same recorded maps and repeat each map/planner condition at both supported grid sizes. Treat ten repeats as a pilot setting, not a final sample-size decision.
 3. Preserve paired records per map. Summarize completion and blocked attempts first; then compare route moves, expanded nodes, replan count, initial planning time, cumulative replan time, and total planning time by difficulty band.
 4. Report median and spread for timing across repeated trials, plus the number of maps and runs. Keep animation delay outside algorithm timing and record the browser/device used.
 5. Treat elapsed-time results as implementation- and device-specific. A lower node count does not automatically mean lower runtime, and the current diagnostic results are not enough to establish a winner.
 
-Implementation note: benchmark CSV rows include a batch ID, map ID, repeat number, initial planning time, cumulative replanning time, and total planning time, alongside total expanded nodes. Each map/planner pair receives one warm-up that is omitted from the CSV, then ten recorded runs with counterbalanced planner order. Larger grids and more structured maps are still needed before drawing conclusions.
+Implementation note: benchmark CSV rows include a batch ID, map ID, repeat number, initial planning time, cumulative replanning time, and total planning time, alongside total expanded nodes. Each map/planner pair receives one warm-up that is omitted from the CSV, then ten recorded runs with counterbalanced planner order. The expanded 480-row batches for both grid sizes still need to be generated and inspected before drawing conclusions.
 
 ## Implementation status
 
-The prototype includes selectable A* and D* Lite planners, search-expansion and planner-time counters, CSV export, five fixed presets, and a repeated comparison (both planners on 23 maps, ten measured repetitions each, for 460 rows). The live page has been opened in desktop and phone-sized browser layouts.
+The prototype includes selectable A* and D* Lite planners, search-expansion and planner-time counters, CSV export, selectable 15 × 15 / 25 × 25 grids, six fixed presets, and a repeated comparison (both planners on 24 maps, ten measured repetitions each, for 480 rows per selected grid size). The live page has been opened in desktop and phone-sized browser layouts.
 
 ### Diagnostic runs (2026-10-09)
 
@@ -75,4 +77,4 @@ The prototype includes selectable A* and D* Lite planners, search-expansion and 
 - Results: 26 goal arrivals, two expected `no_route` outcomes, zero unexpected outcomes, and zero blocked attempts. Each planner had 13 successes and one expected no-route result.
 - Mean expanded nodes were 461 for A* and 183.43 for D* Lite. Mean planner times were 1.61 ms for A* and 4.71 ms for D* Lite. The heap change did not remove D* Lite's timing overhead in this small browser benchmark.
 - These values are diagnostic only; one run, 15 × 15 maps, browser timing noise, and route-length differences do not support a general performance claim. The post-optimization raw CSV is preserved in `diagnostic-benchmark-after-heap-2026-10-09.csv`.
-- The literature-supported interpretation and proposed broader evaluation are recorded above. The simulator now exports initial-plan and cumulative replan timing separately and runs ten recorded repeats per map/planner pair across 23 maps. Larger grids and more structured map layouts remain future work.
+- The literature-supported interpretation and proposed broader evaluation are recorded above. The simulator exports initial-plan and cumulative replan timing separately. The new grid-size and structured-map controls are implemented but the expanded batches have not yet been generated; the diagnostic data above still come from the older 15 × 15 setup.
