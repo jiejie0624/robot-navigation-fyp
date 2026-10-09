@@ -192,7 +192,7 @@ def main() -> int:
     print(f"Read {len(rows)} input rows across {len(summary_rows)} map/planner groups.")
     print(f"Wrote summary: {summary_path}")
     if differences:
-        print(f"Wrote {len(differences)} paired D* Lite − A* comparisons: {pairs_path}")
+        print(f"Wrote {len(differences)} paired D* Lite minus A* comparisons: {pairs_path}")
         print(f"Wrote per-map paired medians and quartiles: {pair_summary_path}")
     else:
         print(f"No paired rows found; {unpaired} groups were unpaired. Older diagnostic CSVs do not have batchId/repeat fields, so they cannot be safely paired.")
