@@ -36,6 +36,8 @@ For every map, save its dimensions, obstacle coordinates, start, heading, destin
 - **Planning time:** algorithm computation time per initial plan and replan, measured separately from the animation delay.
 - **No-route behavior:** whether the robot stops and reports that no route exists.
 
+Expanded cells measure search work but are not interchangeable with runtime; report both. The two planners may choose different routes and discover different obstacles even on the same underlying map. The current comparison is therefore map-matched end-to-end task evaluation. It does not claim that both planners received identical sequences of map updates. See `RESEARCH_DESIGN.md` for the limitation and a possible replay experiment.
+
 ## Fair comparison procedure
 
 1. Run each map with both planners using identical initial conditions.
@@ -59,7 +61,7 @@ Before drawing a performance conclusion:
 
 Implementation note: benchmark CSV rows include a batch ID, map ID, repeat number, initial planning time, cumulative replanning time, and total planning time, alongside total expanded nodes. Each map/planner pair receives one warm-up that is omitted from the CSV, then ten recorded runs with counterbalanced planner order. The expanded 480-row batches for both grid sizes still need to be generated and inspected before drawing conclusions.
 
-Analysis helper: `analyze_benchmark.py` groups outcomes and metrics by map size, scenario, and planner, reporting means, medians, and interquartile values. It also writes paired per-map/per-repeat differences as D* Lite minus A*. It only pairs rows with explicit batch, map, and repeat identifiers; never infer pairing from CSV order. Check success and blocked attempts before interpreting timing summaries.
+Analysis helper: `analyze_benchmark.py` groups outcomes and metrics by map size, scenario, and planner, reporting means, medians, and interquartile values. It also writes per-map/per-repeat differences and per-map paired medians/quartiles as D* Lite minus A*. It only pairs rows with explicit batch, map, and repeat identifiers; never infer pairing from CSV order. Since routes may differ and reveal different obstacles, these are map-matched end-to-end outcomes, not measurements under identical map-update sequences. Check success and blocked attempts before interpreting timing summaries.
 
 ## Implementation status
 

@@ -91,7 +91,7 @@ def summarize(rows: list[dict[str, str]]) -> list[dict[str, object]]:
 
 
 def paired_differences(rows: list[dict[str, str]]) -> tuple[list[dict[str, object]], int]:
-    """Return D* Lite minus A* rows, pairing only identical map/repeat conditions."""
+    """Return map-matched D* Lite minus A* rows; routes may differ between planners."""
     index: dict[tuple[str, ...], dict[str, dict[str, str]]] = defaultdict(dict)
     for row in rows:
         if row.get("planner") not in {"astar", "dstar"}:
@@ -133,6 +133,30 @@ def paired_differences(rows: list[dict[str, str]]) -> tuple[list[dict[str, objec
     return differences, unpaired
 
 
+def summarize_pairs(rows: list[dict[str, object]]) -> list[dict[str, object]]:
+    groups: dict[tuple[str, str, str], list[dict[str, object]]] = defaultdict(list)
+    for row in rows:
+        groups[(str(row["mapWidth"]), str(row["mapHeight"]), str(row["mapId"]))].append(row)
+
+    summaries: list[dict[str, object]] = []
+    for (width, height, map_id), group in sorted(groups.items()):
+        result: dict[str, object] = {
+            "mapWidth": width,
+            "mapHeight": height,
+            "mapId": map_id,
+            "pairedRepeats": len(group),
+            "bothSucceeded": sum(row.get("astarOutcome") == "success" and row.get("dstarOutcome") == "success" for row in group),
+            "outcomesMatched": sum(row.get("astarOutcome") == row.get("dstarOutcome") for row in group),
+        }
+        for metric in METRICS:
+            values = [float(value) for row in group if isinstance((value := row.get(f"dstarMinusAstar_{metric}")), (int, float))]
+            result[f"dstarMinusAstar_{metric}Median"] = median(values) if values else ""
+            result[f"dstarMinusAstar_{metric}Q1"] = quantile(values, 0.25) if values else ""
+            result[f"dstarMinusAstar_{metric}Q3"] = quantile(values, 0.75) if values else ""
+        summaries.append(result)
+    return summaries
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Summarize a Room Rover benchmark CSV without third-party packages.")
     parser.add_argument("csv_file", type=Path, help="CSV downloaded from the simulator")
@@ -149,20 +173,31 @@ def main() -> int:
     differences, unpaired = paired_differences(rows)
     summary_path = args.csv_file.with_name(f"{args.csv_file.stem}-summary.csv")
     pairs_path = args.csv_file.with_name(f"{args.csv_file.stem}-paired-differences.csv")
+    pair_summary_path = args.csv_file.with_name(f"{args.csv_file.stem}-paired-summary.csv")
 
     summary_fields = list(summary_rows[0])
     pair_fields = ["batchId", "mapWidth", "mapHeight", "mapId", "repeat", "astarOutcome", "dstarOutcome"]
     pair_fields.extend(f"dstarMinusAstar_{metric}" for metric in METRICS)
     write_csv(summary_path, summary_fields, summary_rows)
     write_csv(pairs_path, pair_fields, differences)
+    pair_summaries = summarize_pairs(differences)
+    pair_summary_fields = (
+        list(pair_summaries[0])
+        if pair_summaries
+        else ["mapWidth", "mapHeight", "mapId", "pairedRepeats", "bothSucceeded", "outcomesMatched"]
+        + [f"dstarMinusAstar_{metric}{stat}" for metric in METRICS for stat in ("Median", "Q1", "Q3")]
+    )
+    write_csv(pair_summary_path, pair_summary_fields, pair_summaries)
 
     print(f"Read {len(rows)} input rows across {len(summary_rows)} map/planner groups.")
     print(f"Wrote summary: {summary_path}")
     if differences:
         print(f"Wrote {len(differences)} paired D* Lite − A* comparisons: {pairs_path}")
+        print(f"Wrote per-map paired medians and quartiles: {pair_summary_path}")
     else:
         print(f"No paired rows found; {unpaired} groups were unpaired. Older diagnostic CSVs do not have batchId/repeat fields, so they cannot be safely paired.")
         print(f"Wrote an empty paired-comparison file: {pairs_path}")
+        print(f"Wrote an empty paired-summary file: {pair_summary_path}")
     print("Interpret timing summaries as device- and browser-specific; inspect completion and blocked attempts before comparing speed.")
     return 0
 

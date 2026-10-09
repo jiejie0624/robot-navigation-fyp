@@ -25,6 +25,15 @@ Hernandez, Baier, Uras, and Koenig revisit goal-directed navigation in initially
 
 - Hernandez, C., Baier, J., Uras, T., and Koenig, S. (2012), “Position Paper: Incremental Search Algorithms Considered Poorly Understood,” Proceedings of the International Symposium on Combinatorial Search, 3(1), 159–161. DOI: https://doi.org/10.1609/socs.v3i1.18268
 
+### Experimental-design details relevant to this prototype
+
+The 2012 paper uses four-neighbor random grids, varies both obstacle density and start/goal cells, and explicitly makes Repeated Forward A* and D* Lite follow the same trajectory in its random-grid comparison. It also studies game maps, office maps, and mazes. This supports the broader map family and varied endpoint design in Room Rover. However, the current simulator lets each planner choose its own route; matching by underlying map and repeat is not the same as replaying an identical obstacle-discovery sequence. Current results must therefore be described as end-to-end task comparisons. A future replay experiment could isolate the cost of responding to the same map changes.
+
+The paper further notes that expanded-cell counts are not sufficient to compare runtime because the methods can process an expansion at different speeds. Room Rover should report expanded cells and measured planner time as separate outcomes; neither should be treated as a substitute for the other.
+
+- Hernández et al. (2012), author-hosted full text, experimental setup and conclusions: https://idm-lab.org/bib/abstracts/papers/socs12b.pdf
+- Koenig and Likhachev (2002), official AAAI proceedings PDF: https://aaai.org/Papers/AAAI/2002/AAAI02-072.pdf
+
 ## Implications for this FYP
 
 - Start with repeated A* as the simple, understandable baseline.

@@ -4,7 +4,7 @@
 
 - Discuss with the student in simple Chinese unless they request another language.
 - Take the lead on research, technical choices, planning, and implementation. Do not require the student to already know programming or hardware terminology.
-- Before substantial changes, read `PROJECT_BRIEF.md` and `ROADMAP.md`. Keep those files current when a project decision or milestone changes.
+- Before substantial changes, read `PROJECT_BRIEF.md`, `RESEARCH_DESIGN.md`, `EVALUATION_PLAN.md`, and `ROADMAP.md`. Keep them current when a project decision or milestone changes.
 - The student wants a computer simulation first and a real robot later. Keep the simulation useful as a standalone demonstration while designing it so the navigation logic can later be reused with hardware.
 - Keep the control console usable on both desktop and smartphone screens; treat the phone as a possible interface for the future physical-robot demo.
 - Explain technical choices plainly. Distinguish confirmed requirements from assumptions and proposals; do not present an unconfirmed choice as the student's decision.
