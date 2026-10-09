@@ -113,7 +113,7 @@ The project will provide a transparent, repeatable environment for examining how
 
 ## 11. Proposed work plan
 
-The schedule below is milestone-based because the submission date and semester length have not been provided.
+The schedule below is milestone-based because the submission date and semester length have not been provided. An expanded 34-trace controlled-replay pilot has run at both grid sizes; see `CONTROLLED_REPLAY_EXPANDED_PILOT_2026-10-10.md`. It is pilot evidence and is not yet a supervisor-approved final protocol.
 
 | Milestone | Work | Completion evidence |
 |---|---|---|
@@ -125,6 +125,8 @@ The schedule below is milestone-based because the submission date and semester l
 | 6. Analysis and report | Summarize outcomes, discuss validity limits, and prepare final demonstration | Final report and demonstration |
 
 ## 12. Initial references
+
+See `LITERATURE_REVIEW_DRAFT.md` for the preliminary synthesis. Additional references include Hart et al. (1968), the foundational A* paper ([DOI](https://doi.org/10.1109/TSSC.1968.300136)), and Hernández, Baier, and Asín (2014), which studies MPAA*, an enhanced A* variant rather than plain repeated A* ([DOI](https://doi.org/10.1609/icaps.v24i1.13675)).
 
 1. Koenig, S. and Likhachev, M. (2002). “D* Lite.” *Proceedings of the Eighteenth National Conference on Artificial Intelligence*, pp. 476–483. [AAAI paper](https://aaai.org/Papers/AAAI/2002/AAAI02-072.pdf).
 2. Koenig, S. and Likhachev, M. (2005). “Fast Replanning for Navigation in Unknown Terrain.” *IEEE Transactions on Robotics*. [Author-hosted paper](https://www.cs.cmu.edu/~maxim/files/dlite_tro05.pdf).

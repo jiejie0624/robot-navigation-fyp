@@ -54,7 +54,7 @@ If the final FYP needs to isolate the incremental-search effect more tightly, ad
 2. The seeded maps vary start, heading, goal, and obstacle pattern. A deterministic retry is used if the generated start-to-goal route is disconnected; these generated cases therefore focus on reachable random tasks. Use the fixed no-route wall as a separate correctness case.
 3. For each map and planner, run one unrecorded warm-up and ten recorded repetitions. Alternate planner order by map and repeat.
 4. One selected grid size produces 24 × 2 × 10 = 480 measured rows. Run a separate batch for the other size, producing 960 rows total when both sizes are included.
-5. Save the raw CSV before analysis. Record the browser, device, date, and any background workload alongside the exported file; the current CSV does not record this environment metadata.
+5. Save the raw CSV before analysis. The end-to-end batch CSV records map/task details but not all browser/device metadata; record the browser, device, date, and background workload alongside that export. The controlled-replay CSV records browser user-agent/platform, viewport, and device-pixel ratio, but the pilot still came from one session.
 6. Run `python analyze_benchmark.py <csv-file>`. It writes per-planner/map summaries, per-map/repeat paired differences, and per-map paired medians/quartiles. Inspect completion, expected outcomes, and blocked attempts before interpreting search-work or timing differences.
 
 ## Analysis plan
@@ -69,6 +69,8 @@ If the final FYP needs to isolate the incremental-search effect more tightly, ad
 
 For a narrower comparison under identical map updates, use the separate controlled planner-replay design in `FAIR_REPLAY_PROTOCOL.md`. Prescribe the same update list and current-position query at each checkpoint for both methods. This isolates replanning computation but does not measure a robot autonomously following the planner's route; keep its data separate from the end-to-end task comparison.
 
+The current expanded replay pilot uses 34 traces (four hand-designed plus 30 seeded) at three checkpoints per trace and ten repetitions, on both grid sizes: 4,080 planner/checkpoint rows in total. The interface reported zero parity mismatches and zero route/outcome errors. See `CONTROLLED_REPLAY_EXPANDED_PILOT_2026-10-10.md` for the integrity summary and limitations.
+
 ## Threats to validity and limitations
 
 - The grid, sensor, and motion are idealized; there is no sensor noise, wheel slip, turning cost, continuous localization, or moving obstacle.
@@ -77,6 +79,10 @@ For a narrower comparison under identical map updates, use the separate controll
 - Connectivity retries alter the effective random seed. Keep the recorded effective seed and full map configuration when analyzing results.
 - The route chosen by each planner affects the obstacle discoveries it receives. Use the pairing interpretation above and do not overstate causal isolation.
 - The university's required format, proposal scope, and supervisor expectations are not yet known.
+
+## Literature review status
+
+The initial source synthesis is in `LITERATURE_REVIEW_DRAFT.md`; it covers A*, D* Lite, evidence that planner performance depends on task difficulty, and the gap between a grid simulator and a real navigation stack. It is a starting draft, not a completed systematic search or an approved literature chapter.
 
 ## Primary sources
 

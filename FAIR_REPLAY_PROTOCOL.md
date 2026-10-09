@@ -51,8 +51,10 @@ Validate each returned path in a planner-independent checker. A path must start 
 2. **Pilot complete:** the replay runner applies the same fixed checkpoint positions and obstacle-update list to each planner, alternates planner order across traces/repetitions, warms up once, and exports a separate replay CSV.
 3. **Pilot complete:** an independent breadth-first reachability check and path validator check each returned plan; malformed updates, occupied checkpoint positions, and occupied goals stop the run.
 4. **Pilot complete:** `analyze_replay.py` pairs records by batch, size, trace, repetition, and checkpoint, then summarizes per-trace totals without mixing replay results into the end-to-end dataset.
-5. **Pilot complete:** both grid sizes ran ten recorded repetitions. Integrity and preliminary results are recorded in `CONTROLLED_REPLAY_PILOT_2026-10-09.md`.
+5. **Expanded pilot complete:** 34 deterministic traces are defined: four hand-designed cases and 30 seeded maps (10 each at requested obstacle densities 8%, 16%, and 24%). Each trace has three checkpoints. Both grid sizes ran ten recorded repetitions. The UI reported 2,000 reachable and 40 no-route checkpoint results per grid size, with zero update-sequence mismatches and zero path/outcome errors. Results and limits are in `CONTROLLED_REPLAY_EXPANDED_PILOT_2026-10-10.md`.
 
-Before treating the replay results as final evidence, add more independent trace layouts and obstacle configurations, freeze them before measuring, record browser/device metadata, and repeat the experiment in a clean session. The current four traces are an implementation pilot, not a representative map sample.
+The expanded replay CSV records trace family, effective seed, requested and realized density, browser user-agent/platform, viewport size, and device pixel ratio alongside planner and checkpoint data. The run completed in one browser/device session, so environment metadata do not create a cross-device study.
+
+The 30 seeded traces broaden the pilot beyond the four hand-designed cases, but remain generated from this simulator's map generator. Treat them as a broader reproducible pilot, not a representative sample of real buildings. Before final evidence, freeze the protocol, retain the raw exported CSV, check the analysis outputs, and consider an independent testbed or human-designed maps.
 
 Do not modify the existing batch-comparison CSV interpretation or merge replay rows into it. Keep the replay experiment as a distinct condition with its own data and results report.

@@ -30,7 +30,15 @@ def write_csv(path: Path, rows: list[dict[str, object]]) -> None:
         writer.writerows(rows)
 
 
-def analyze(rows: list[dict[str, str]]) -> tuple[list[dict[str, object]], list[dict[str, object]]]:
+def trace_family(row: dict[str, str]) -> str:
+    family = row.get("traceFamily", "").strip()
+    if family:
+        return family
+    trace = row.get("traceId", "")
+    return "-".join(trace.split("-")[:2]) if trace.startswith("seeded-") else trace
+
+
+def analyze(rows: list[dict[str, str]]) -> tuple[list[dict[str, object]], list[dict[str, object]], list[dict[str, object]]]:
     pair_index: dict[tuple[str, ...], dict[str, dict[str, str]]] = defaultdict(dict)
     for row in rows:
         if row.get("planner") not in {"astar", "dstar"}:
@@ -93,7 +101,34 @@ def analyze(rows: list[dict[str, str]]) -> tuple[list[dict[str, object]], list[d
             paired_row[f"dstarMinusAstar_{metric}EqualRuns"] = sum(value == 0 for value in values)
             paired_row[f"dstarMinusAstar_{metric}DstarHigherRuns"] = sum(value > 0 for value in values)
         paired_summary.append(paired_row)
-    return planner_summary, paired_summary
+    family_groups: dict[tuple[str, str], list[dict[str, object]]] = defaultdict(list)
+    row_by_trace = {(row.get("mapWidth", ""), row.get("traceId", "")): row for row in rows}
+    for summary in paired_summary:
+        source = row_by_trace.get((str(summary["mapWidth"]), str(summary["traceId"])), {})
+        family_groups[(str(summary["mapWidth"]), trace_family(source))].append(summary)
+
+    family_summary: list[dict[str, object]] = []
+    metrics = (
+        "dstarMinusAstar_expandedMedian",
+        "dstarMinusAstar_planningMsMedian",
+    )
+    for (width, family), traces in sorted(family_groups.items()):
+        result: dict[str, object] = {
+            "mapWidth": width,
+            "traceFamily": family,
+            "independentTraces": len(traces),
+            "pairedCheckpointRows": sum(int(item["pairedCheckpoints"]) for item in traces),
+            "routeOrOutcomeErrorsBothPlanners": sum(int(item["routeOrOutcomeErrorsBothPlanners"]) for item in traces),
+        }
+        for metric in metrics:
+            values = [float(item[metric]) for item in traces]
+            stem = metric.removesuffix("Median")
+            result[f"{stem}MedianAcrossTraceMedians"] = median(values)
+            result[f"{stem}Q1AcrossTraceMedians"] = quantile(values, 0.25)
+            result[f"{stem}Q3AcrossTraceMedians"] = quantile(values, 0.75)
+        family_summary.append(result)
+
+    return planner_summary, paired_summary, family_summary
 
 
 def main() -> int:
@@ -106,14 +141,17 @@ def main() -> int:
         rows = list(csv.DictReader(source))
     if not rows:
         parser.error("CSV contains no data rows")
-    planner_rows, paired_rows = analyze(rows)
+    planner_rows, paired_rows, family_rows = analyze(rows)
     planner_path = args.csv_file.with_name(f"{args.csv_file.stem}-summary.csv")
     paired_path = args.csv_file.with_name(f"{args.csv_file.stem}-paired-summary.csv")
+    family_path = args.csv_file.with_name(f"{args.csv_file.stem}-family-summary.csv")
     write_csv(planner_path, planner_rows)
     write_csv(paired_path, paired_rows)
+    write_csv(family_path, family_rows)
     print(f"Read {len(rows)} checkpoint rows across {len(paired_rows)} size/trace cases.")
     print(f"Wrote per-planner trace totals: {planner_path}")
     print(f"Wrote paired replay differences: {paired_path}")
+    print(f"Wrote family summaries (per-trace medians): {family_path}")
     return 0
 
 

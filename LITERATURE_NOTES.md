@@ -46,3 +46,9 @@ The paper further notes that expanded-cell counts are not sufficient to compare 
 - Do not assume D* Lite must win. Include easy maps with few replans and harder maps with more obstacle discoveries; report the results by difficulty as well as overall.
 - Repeat runs on the same recorded maps and vary map seeds to distinguish map difficulty from timing noise. Report median and spread, not a lone timing or only an overall mean.
 - Separate initial-plan time from cumulative replan time (and, if feasible, per-replan time). A single total can hide whether a method is slower to start but cheaper to repair, or the reverse.
+
+## Additional primary sources
+
+- Hart, Nilsson, and Raphael's 1968 paper is the foundational reference for the A* heuristic-search method used as the repeated-search baseline: [DOI](https://doi.org/10.1109/TSSC.1968.300136) · [hosted copy](https://www.cs.auckland.ac.nz/courses/compsci709s2c/resources/Mike.d/astarNilsson.pdf).
+- Hernández, Baier, and Asín (2014) study MPAA*, an enhanced A* method. Their results are not results for this project's plain repeated-A* implementation and should only be used to show that algorithm design choices can change the comparison: [DOI](https://doi.org/10.1609/icaps.v24i1.13675).
+- A structured first-pass synthesis is in `LITERATURE_REVIEW_DRAFT.md`. It is preliminary, not a complete literature review.
