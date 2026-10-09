@@ -55,7 +55,7 @@ Before drawing a performance conclusion:
 4. Report median and spread for timing across repeated trials, plus the number of maps and runs. Keep animation delay outside algorithm timing and record the browser/device used.
 5. Treat elapsed-time results as implementation- and device-specific. A lower node count does not automatically mean lower runtime, and the current diagnostic results are not enough to establish a winner.
 
-Implementation note: the current CSV records total planner time and total expanded nodes for a complete run. It does not yet split initial planning from later replans; add that distinction before using timing to answer the research question.
+Implementation note: CSV rows now record initial planning time, cumulative replanning time, and total planning time separately, alongside total expanded nodes. This enables stage-level timing comparisons; repeated trials and a broader testbed are still needed before drawing conclusions.
 
 ## Implementation status
 
@@ -75,4 +75,4 @@ The prototype includes selectable A* and D* Lite planners, search-expansion and 
 - Results: 26 goal arrivals, two expected `no_route` outcomes, zero unexpected outcomes, and zero blocked attempts. Each planner had 13 successes and one expected no-route result.
 - Mean expanded nodes were 461 for A* and 183.43 for D* Lite. Mean planner times were 1.61 ms for A* and 4.71 ms for D* Lite. The heap change did not remove D* Lite's timing overhead in this small browser benchmark.
 - These values are diagnostic only; one run, 15 × 15 maps, browser timing noise, and route-length differences do not support a general performance claim. The post-optimization raw CSV is preserved in `diagnostic-benchmark-after-heap-2026-10-09.csv`.
-- The literature-supported interpretation and proposed broader evaluation are recorded above; the next implementation step is to export initial-plan and replan timing separately, then expand repeated runs and map difficulty.
+- The literature-supported interpretation and proposed broader evaluation are recorded above. The simulator now exports initial-plan and cumulative replan timing separately; expanding repeated runs and map difficulty remains future work.
