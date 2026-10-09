@@ -19,6 +19,12 @@ Nav2's official Smac Planner documentation lists 2D A*, Hybrid-A*, and State Lat
 
 - Nav2 documentation, “Smac Planner”: https://docs.nav2.org/rolling/configuration_and_development/configuration_guide/planners_plugins/smac/
 
+## When incremental search is faster
+
+Hernandez, Baier, Uras, and Koenig revisit goal-directed navigation in initially unknown terrain and point out that it is not generally understood when D* Lite beats Repeated A* in runtime. Their position paper reports that Repeated A* appears faster on easy navigation problems where the agent needs only a small number of searches. They recommend evaluating incremental search on more diverse testbeds. This is directly relevant to the prototype: in its current 15 × 15, 14-map diagnostic run, D* Lite expanded fewer nodes but its measured mean planning time remained higher. That observation is plausible and worth studying; it is not evidence that either algorithm is universally faster.
+
+- Hernandez, C., Baier, J., Uras, T., and Koenig, S. (2012), “Position Paper: Incremental Search Algorithms Considered Poorly Understood,” Proceedings of the International Symposium on Combinatorial Search, 3(1), 159–161. DOI: https://doi.org/10.1609/socs.v3i1.18268
+
 ## Implications for this FYP
 
 - Start with repeated A* as the simple, understandable baseline.
@@ -28,3 +34,6 @@ Nav2's official Smac Planner documentation lists 2D A*, Hybrid-A*, and State Lat
 - Measure expanded cells as well as planning time. Small maps can make elapsed-time comparisons noisy or uninformative.
 - Report route cost, completion, collisions/blocked-cell attempts, replanning count, expanded cells, and planning time. Include a no-route case and confirm safe stopping.
 - The papers establish a suitable comparison, but do not predetermine which planner will perform best on this FYP's small maps. That is what the experiment should determine.
+- Do not assume D* Lite must win. Include easy maps with few replans and harder maps with more obstacle discoveries; report the results by difficulty as well as overall.
+- Repeat runs on the same recorded maps and vary map seeds to distinguish map difficulty from timing noise. Report median and spread, not a lone timing or only an overall mean.
+- Separate initial-plan time from cumulative replan time (and, if feasible, per-replan time). A single total can hide whether a method is slower to start but cheaper to repair, or the reverse.
