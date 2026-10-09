@@ -59,6 +59,8 @@ Before drawing a performance conclusion:
 
 Implementation note: benchmark CSV rows include a batch ID, map ID, repeat number, initial planning time, cumulative replanning time, and total planning time, alongside total expanded nodes. Each map/planner pair receives one warm-up that is omitted from the CSV, then ten recorded runs with counterbalanced planner order. The expanded 480-row batches for both grid sizes still need to be generated and inspected before drawing conclusions.
 
+Analysis helper: `analyze_benchmark.py` groups outcomes and metrics by map size, scenario, and planner, reporting means, medians, and interquartile values. It also writes paired per-map/per-repeat differences as D* Lite minus A*. It only pairs rows with explicit batch, map, and repeat identifiers; never infer pairing from CSV order. Check success and blocked attempts before interpreting timing summaries.
+
 ## Implementation status
 
 The prototype includes selectable A* and D* Lite planners, search-expansion and planner-time counters, CSV export, selectable 15 × 15 / 25 × 25 grids, six fixed presets, and a repeated comparison (both planners on 24 maps, ten measured repetitions each, for 480 rows per selected grid size). The live page has been opened in desktop and phone-sized browser layouts.
