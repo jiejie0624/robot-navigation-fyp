@@ -45,17 +45,17 @@ For every map, save its dimensions, obstacle coordinates, start, heading, destin
 
 ## Next experiment-design refinement
 
-The current 14-map batch is a useful prototype check, but it has only one execution per map and uses one 15 × 15 grid size. A 2012 position paper on incremental search notes that Repeated A* can run faster than D* Lite on easy navigation tasks with few searches and recommends more diverse testbeds. Therefore the evaluation should not assume D* Lite is faster in every condition.
+The current batch contains 14 map layouts at one 15 × 15 grid size. It now performs one unrecorded warm-up and ten recorded repetitions for each map/planner pair, with planner order balanced across repeats. Repetitions help characterize timing noise on the same map; they do not create more independent map layouts. A 2012 position paper on incremental search notes that Repeated A* can run faster than D* Lite on easy navigation tasks with few searches and recommends more diverse testbeds. Therefore the evaluation should not assume D* Lite is faster in every condition.
 
 Before drawing a performance conclusion:
 
 1. Keep a set of named difficulty bands: easy routes with zero or few newly discovered obstacles, moderate routes with several replans, and harder corridor/maze cases. Keep no-route tests as a separate correctness category.
-2. Run both planners on the same recorded maps and repeat each map/planner condition. Add map seeds and, when feasible, at least one larger grid size so results are not tied to one tiny map family.
+2. Run both planners on the same recorded maps and repeat each map/planner condition. Add map seeds and, when feasible, at least one larger grid size so results are not tied to one tiny map family. Treat ten repeats as a pilot setting, not a final sample-size decision.
 3. Preserve paired records per map. Summarize completion and blocked attempts first; then compare route moves, expanded nodes, replan count, initial planning time, cumulative replan time, and total planning time by difficulty band.
 4. Report median and spread for timing across repeated trials, plus the number of maps and runs. Keep animation delay outside algorithm timing and record the browser/device used.
 5. Treat elapsed-time results as implementation- and device-specific. A lower node count does not automatically mean lower runtime, and the current diagnostic results are not enough to establish a winner.
 
-Implementation note: CSV rows now record initial planning time, cumulative replanning time, and total planning time separately, alongside total expanded nodes. This enables stage-level timing comparisons; repeated trials and a broader testbed are still needed before drawing conclusions.
+Implementation note: benchmark CSV rows include a batch ID, map ID, repeat number, initial planning time, cumulative replanning time, and total planning time, alongside total expanded nodes. Each map/planner pair receives one warm-up that is omitted from the CSV, then ten recorded runs with counterbalanced planner order. Broader map diversity is still needed before drawing conclusions.
 
 ## Implementation status
 
@@ -75,4 +75,4 @@ The prototype includes selectable A* and D* Lite planners, search-expansion and 
 - Results: 26 goal arrivals, two expected `no_route` outcomes, zero unexpected outcomes, and zero blocked attempts. Each planner had 13 successes and one expected no-route result.
 - Mean expanded nodes were 461 for A* and 183.43 for D* Lite. Mean planner times were 1.61 ms for A* and 4.71 ms for D* Lite. The heap change did not remove D* Lite's timing overhead in this small browser benchmark.
 - These values are diagnostic only; one run, 15 × 15 maps, browser timing noise, and route-length differences do not support a general performance claim. The post-optimization raw CSV is preserved in `diagnostic-benchmark-after-heap-2026-10-09.csv`.
-- The literature-supported interpretation and proposed broader evaluation are recorded above. The simulator now exports initial-plan and cumulative replan timing separately; expanding repeated runs and map difficulty remains future work.
+- The literature-supported interpretation and proposed broader evaluation are recorded above. The simulator now exports initial-plan and cumulative replan timing separately and runs ten recorded repeats per map/planner pair; expanding map diversity and grid sizes remains future work.
