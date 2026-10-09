@@ -19,8 +19,9 @@ An early browser-based simulator for a CS final-year project about indoor robot 
 - Repeatable presets cover an open room, a direct blocker, a long detour wall, a corridor, and a no-route wall.
 - Use “比较全部场景” to run both planners on five fixed presets and nine deterministic random maps: three seeds at each of three requested obstacle densities (8%, 16%, and 24%). This creates 28 rows total.
 - Each CSV row includes the expected and observed outcome, planner, measures, grid size, sensor range, start, heading, goal, obstacle coordinates, requested density, actual density, and seed for generated maps. The random generator retries with a recorded derived seed if a generated map disconnects start and goal.
+- A raw export from the second diagnostic run is kept in [`diagnostic-benchmark-2026-10-09.csv`](diagnostic-benchmark-2026-10-09.csv); it is for debugging and reproducibility, not a research conclusion.
 
-The simulator is grid-based and does not model real motors, sensor noise, or localization drift. The public page has been opened in a desktop browser and inspected at a phone-sized viewport, but the planner comparison still needs systematic runtime verification before its CSV is used as research evidence. Read `PROJECT_BRIEF.md`, `EVALUATION_PLAN.md`, and `ROADMAP.md` for scope and next steps.
+The simulator is grid-based and does not model real motors, sensor noise, or localization drift. The 28-case comparison has been run twice: all outcomes matched expectations and no blocked-cell attempts occurred. This is a prototype check, not enough evidence for a research conclusion; D* Lite's search-time overhead and route lengths still need study. Read `PROJECT_BRIEF.md`, `EVALUATION_PLAN.md`, and `ROADMAP.md` for scope and next steps.
 
 ## GitHub Pages visibility note
 

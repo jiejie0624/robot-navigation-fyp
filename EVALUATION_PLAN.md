@@ -47,9 +47,10 @@ For every map, save its dimensions, obstacle coordinates, start, heading, destin
 
 The prototype includes selectable A* and D* Lite planners, search-expansion and planner-time counters, CSV export, five fixed presets, and a 28-run comparison (both planners on the five presets and nine seeded maps). The live page has been opened in desktop and phone-sized browser layouts.
 
-### First diagnostic run (2026-10-09)
+### Diagnostic runs (2026-10-09)
 
-- 26 of the 28 planner runs reached the goal; the two `no-route` runs correctly returned `no_route` for both planners.
-- No run attempted to enter an obstacle (`blockedAttempts = 0`).
-- Across all 14 map/planner rows per method, the observed mean expanded-node count was 461 for A* and 183 for D* Lite. The observed mean planning time was 1.89 ms and 5.05 ms, respectively.
-- These are one browser run on a 15 × 15 grid. Treat them only as a debugging baseline: timing is noisy at this scale, and a single run is not evidence that one algorithm is better.
+- Two browser runs each produced 26 goal arrivals and two expected `no_route` outcomes, one for each planner on the wall-separated map.
+- Neither run attempted to enter an obstacle (`blockedAttempts = 0`), and all outcomes matched their expected outcomes.
+- Across the 14 map/planner rows per method, mean expanded-node counts were 461 for A* and 183 for D* Lite. Mean planning-time observations ranged from 1.64–1.89 ms for A* and 4.60–5.05 ms for D* Lite.
+- These are prototype checks on a 15 × 15 grid, not research evidence. Timing is noisy at this scale, and D* Lite's queue implementation currently has more overhead despite fewer expanded nodes. The planners can also take different routes, so route length needs separate analysis.
+- The raw CSV from the second run is preserved at `diagnostic-benchmark-2026-10-09.csv`.
