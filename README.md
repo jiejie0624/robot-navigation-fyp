@@ -31,6 +31,8 @@ An early browser-based simulator for a CS final-year project about indoor robot 
 
 The simulator is grid-based and does not model real motors, sensor noise, or localization drift. The 28-case comparison has been run three times: all outcomes matched expectations and no blocked-cell attempts occurred. This is a prototype check, not enough evidence for a research conclusion; D* Lite's search-time overhead and route lengths still need study. Read `PROJECT_BRIEF.md`, `RESEARCH_DESIGN.md`, `EVALUATION_PLAN.md`, and `ROADMAP.md` for scope, methodology, and next steps.
 
+For a supervisor-ready starting point, see [`FYP_PROPOSAL_DRAFT.md`](FYP_PROPOSAL_DRAFT.md). It is a generic working draft and must be adapted to the university's required template and approved scope.
+
 ## GitHub Pages visibility note
 
 GitHub Pages sites are publicly accessible on the internet. Do not publish private information, API keys, credentials, or student data in this project. See [GitHub's Pages publishing-source guide](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
