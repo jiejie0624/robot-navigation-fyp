@@ -18,7 +18,7 @@ An early browser-based simulator for a CS final-year project about indoor robot 
 - The run summary includes expanded nodes and planner computation time; completed runs can be exported to CSV.
 - Repeatable presets cover an open room, a direct blocker, a long detour wall, a corridor, and a no-route wall.
 - Use “比较全部场景” to run both planners on five fixed presets and nine deterministic random maps: three seeds at each of three requested obstacle densities (8%, 16%, and 24%). This creates 28 rows total.
-- Each CSV row includes the planner, outcome, measures, grid size, sensor range, start, heading, goal, obstacle coordinates, requested density, actual density, and seed for generated maps. The random generator retries with a recorded derived seed if a generated map disconnects start and goal.
+- Each CSV row includes the expected and observed outcome, planner, measures, grid size, sensor range, start, heading, goal, obstacle coordinates, requested density, actual density, and seed for generated maps. The random generator retries with a recorded derived seed if a generated map disconnects start and goal.
 
 The simulator is grid-based and does not model real motors, sensor noise, or localization drift. The public page has been opened in a desktop browser and inspected at a phone-sized viewport, but the planner comparison still needs systematic runtime verification before its CSV is used as research evidence. Read `PROJECT_BRIEF.md`, `EVALUATION_PLAN.md`, and `ROADMAP.md` for scope and next steps.
 

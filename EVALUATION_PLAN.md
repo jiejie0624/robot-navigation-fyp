@@ -45,4 +45,11 @@ For every map, save its dimensions, obstacle coordinates, start, heading, destin
 
 ## Implementation status
 
-The prototype includes selectable A* and D* Lite planners, search-expansion and planner-time counters, CSV export, five fixed presets, and a 28-run comparison (both planners on the five presets and nine seeded maps). The live page has been opened in desktop and phone-sized browser layouts. The comparison's algorithm outputs have not yet been accepted as research results; verify planner correctness and review the run records before drawing conclusions.
+The prototype includes selectable A* and D* Lite planners, search-expansion and planner-time counters, CSV export, five fixed presets, and a 28-run comparison (both planners on the five presets and nine seeded maps). The live page has been opened in desktop and phone-sized browser layouts.
+
+### First diagnostic run (2026-10-09)
+
+- 26 of the 28 planner runs reached the goal; the two `no-route` runs correctly returned `no_route` for both planners.
+- No run attempted to enter an obstacle (`blockedAttempts = 0`).
+- Across all 14 map/planner rows per method, the observed mean expanded-node count was 461 for A* and 183 for D* Lite. The observed mean planning time was 1.89 ms and 5.05 ms, respectively.
+- These are one browser run on a 15 × 15 grid. Treat them only as a debugging baseline: timing is noisy at this scale, and a single run is not evidence that one algorithm is better.
