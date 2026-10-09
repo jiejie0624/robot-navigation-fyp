@@ -2,10 +2,10 @@
 
 > Working draft for supervisor discussion. Adapt it to the university's required format, word count, and scope before submission.
 
-**Student:** [Add name and student ID]  
-**Programme:** [Add programme]  
-**Supervisor:** [Add supervisor]  
-**Date:** [Add date]
+- **Student:** [Add name and student ID]
+- **Programme:** [Add programme]
+- **Supervisor:** [Add supervisor]
+- **Date:** [Add date]
 
 ## Proposed title
 
@@ -82,10 +82,10 @@ Each map/planner condition will be repeated to characterize run-to-run timing va
 
 ### 7.3 Measures
 
-**Correctness and safety:** goal reached, expected no-route result, unexpected outcome, and attempted entry into a known blocked cell.  
-**Navigation cost:** number of moves and number of replanning episodes.  
-**Search effort:** expanded cells.  
-**Computation:** initial planning time, cumulative replanning time, and total planning time measured with the browser's high-resolution timer, excluding animation delay.
+- **Correctness and safety:** goal reached, expected no-route result, unexpected outcome, and attempted entry into a known blocked cell.
+- **Navigation cost:** number of moves and number of replanning episodes.
+- **Search effort:** expanded cells.
+- **Computation:** initial planning time, cumulative replanning time, and total planning time measured with the browser's high-resolution timer, excluding animation delay.
 
 ### 7.4 Analysis
 
