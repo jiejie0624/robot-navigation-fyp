@@ -1,0 +1,8 @@
+﻿mapWidth,traceFamily,independentTraces,pairedCheckpointRows,routeOrOutcomeErrorsBothPlanners,dstarMinusAstar_expandedMedianAcrossTraceMedians,dstarMinusAstar_expandedQ1AcrossTraceMedians,dstarMinusAstar_expandedQ3AcrossTraceMedians,dstarMinusAstar_planningMsMedianAcrossTraceMedians,dstarMinusAstar_planningMsQ1AcrossTraceMedians,dstarMinusAstar_planningMsQ3AcrossTraceMedians
+25,goal-cut,1,30,0,-276.0,-276.0,-276.0,4.8999999999999995,4.8999999999999995,4.8999999999999995
+25,off-route,1,30,0,-33.0,-33.0,-33.0,0.29999999999999993,0.29999999999999993,0.29999999999999993
+25,seeded-high,10,300,0,-26.0,-33.5,-14.75,0.8500000000000001,0.6625000000000001,1.1
+25,seeded-low,10,300,0,-24.0,-34.5,-16.0,0.625,0.44999999999999996,1.0250000000000001
+25,seeded-medium,10,300,0,-21.0,-33.0,-11.75,0.6000000000000001,0.5,1.1500000000000001
+25,sequential-blockers,1,30,0,-23.0,-23.0,-23.0,1.45,1.45,1.45
+25,single-blocker,1,30,0,-23.0,-23.0,-23.0,1.4,1.4,1.4

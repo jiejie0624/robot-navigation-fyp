@@ -36,7 +36,7 @@ For every map, save its dimensions, obstacle coordinates, start, heading, destin
 - **Planning time:** algorithm computation time per initial plan and replan, measured separately from the animation delay.
 - **No-route behavior:** whether the robot stops and reports that no route exists.
 
-Expanded cells measure search work but are not interchangeable with runtime; report both. The two planners may choose different routes and discover different obstacles even on the same underlying map. The current comparison is therefore map-matched end-to-end task evaluation. It does not claim that both planners received identical sequences of map updates. The separate controlled-replay pilot now applies the same checkpoint positions and obstacle updates to both planners; its scope and results are in `FAIR_REPLAY_PROTOCOL.md` and `CONTROLLED_REPLAY_PILOT_2026-10-09.md`.
+Expanded cells measure search work but are not interchangeable with runtime; report both. The two planners may choose different routes and discover different obstacles even on the same underlying map. The current comparison is therefore map-matched end-to-end task evaluation. It does not claim that both planners received identical sequences of map updates. The separate controlled-replay pilot applies the same checkpoint positions and obstacle updates to both planners; its expanded raw data, paired analysis, and limits are in `FAIR_REPLAY_PROTOCOL.md` and `CONTROLLED_REPLAY_EXPANDED_PILOT_2026-10-10.md`.
 
 ## Fair comparison procedure
 
