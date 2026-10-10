@@ -13,6 +13,8 @@
 ## Stage 2 — Computer simulation
 
 - Refine the 2D grid control console and robot behavior.
+- Keep the primary interface in English; provide a same-test restart and a new-test reset that defaults the heading to North.
+- Show a paired A* vs D* Lite controlled-comparison summary in the interface, including expanded nodes and planning time, since both methods can return the same route.
 - Make unknown-obstacle detection and map updates clear in the demo.
 - Handle repeated blockage, stale obstacle information, and no-route cases safely.
 - Add repeatable test maps and collect evaluation data.

@@ -4,18 +4,20 @@ An early browser-based simulator for a CS final-year project about indoor robot 
 
 ## Run the prototype
 
-- Open the live demo in a modern browser: [Room Rover on GitHub Pages](https://jiejie0624.github.io/robot-navigation-fyp/).
+- Open the live demo in a modern browser: [Room Rover on Vercel](https://room-rover-eight.vercel.app/). The GitHub Pages copy is also available at [jiejie0624.github.io](https://jiejie0624.github.io/robot-navigation-fyp/).
 - The page adapts to phones; the square map scrolls horizontally on narrow screens and the setup controls stack below it. The simulator is public, so do not enter private information.
 - To work locally, open `index.html` in a modern browser.
 
 ## Current prototype behavior
 
 - Set the robot's start cell, initial facing direction, and destination.
+- Use **Restart same test** to rerun the current map from the same start, goal, and initial heading while clearing discovered obstacles and run metrics. Use **New test (reset to North)** to clear the room and return the heading to North.
 - Place obstacles in the scenario; their locations are hidden from the robot during a run.
 - The simulated sensor scans forward and reveals obstacles as the robot approaches.
 - Select A* (recompute) or D* Lite (incremental replanning) for cells not yet known to be blocked.
 - The map and mission log show detected obstacles, movement, and replanning counts.
 - The run summary includes expanded nodes and planner computation time; completed runs can be exported to CSV.
+- **Compare A* vs D* Lite (same updates)** runs a controlled replay and displays side-by-side median expanded nodes and planning time for paired trials. The two planners may draw the same route because they optimize the same path cost; compare search work and timing instead.
 - Choose a 15 × 15 baseline grid or a larger 25 × 25 grid. Changing size reloads the selected preset so all start, goal, and obstacle coordinates remain valid.
 - Repeatable presets cover an open room, a direct blocker, a long detour wall, a corridor with two offset openings, an alternating-opening maze, and a no-route wall.
 - Use “重复比较” to run both planners on six fixed presets and 18 deterministic random maps: six seeds at each of three requested obstacle densities (8%, 16%, and 24%). Seeded maps also derive different start cells, goals, and headings from their seeds. Each map/planner pair gets one unrecorded warm-up and ten recorded repetitions, for 480 measured rows per batch at the selected grid size. Planner order alternates across repetitions to balance order effects.

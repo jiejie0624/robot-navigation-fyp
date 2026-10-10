@@ -16,6 +16,7 @@ Develop a CS FYP that demonstrates how an indoor mobile robot can reach a user-s
 8. The console shows the robot, discovered obstacles, route, and task status.
 
 The console should work on both desktop and smartphone screens. Smartphone support is for setting destinations and monitoring a future robot demo; algorithm development and detailed evaluation remain comfortable on a computer.
+The simulator's primary interface language is English.
 
 ## Core research question (draft proposal)
 
