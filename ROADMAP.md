@@ -25,7 +25,7 @@
 
 ## Stage 4 — Physical robot feasibility
 
-- Research suitable low-cost chassis, controller, motor driver, sensors, and battery using current sources.
+- Initial hardware architecture, Malaysia price check, integration flow, staged validation procedure, and safety risks are documented in `HARDWARE_FEASIBILITY_PLAN.md`.
 - Keep hardware selection within the student's confirmed budget and access constraints; do not assume a purchase.
 - Calibrate motion and sensing in a small, controlled test area.
 - Connect robot telemetry and commands to the control console if feasible.
@@ -42,5 +42,6 @@
 - Stage 1: in progress; initial primary sources, a preliminary literature review, a draft algorithm comparison, an experimental-design note, and a generic proposal draft are recorded in the project docs. University proposal/report requirements and supervisor approval remain outstanding.
 - Stage 2: public simulator is deployed on GitHub Pages and opened in desktop and phone-sized browser layouts. It includes six fixed presets, 18 deterministic random maps across three requested densities, selectable 15 × 15 / 25 × 25 grids, seed-derived start/heading/goal, planner counters, repeated batch comparison, and CSV records with reconstructable map configuration. The map generator records its effective seed after deterministic retries to ensure a route exists in generated cases.
 - Stage 3: the end-to-end benchmark has completed at both grid sizes (480 rows each), with raw data, paired comparisons, and stratified summaries in `EXPERIMENT_RESULTS_2026-10-09.md` and `STRATIFIED_ANALYSIS_2026-10-09.md`. The controlled-update replay pilot has four hand-designed and 30 seeded traces, three checkpoints per trace, and ten repetitions at each grid size. Its two retained CSVs contain 2,040 rows each; integrity checks passed, and paired trace/family summaries are generated. D* Lite expanded fewer nodes on all 34 traces but took longer in the one-session browser timings. Physical robot stages remain unstarted.
-- Stages 4–5: not started.
+- Stage 4: desk research completed as a proposal only. No hardware has been selected for purchase or built; budget, soldering access, supervisor scope, local control bridge, calibration, and physical tests remain open.
+- Stage 5: not started.
 - Camera extension: feasibility and scope documented in `CAMERA_EXTENSION_PLAN.md`; no camera or vision API is currently required by the core simulator.
