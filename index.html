@@ -13,8 +13,9 @@
     .layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;align-items:start}.card{background:linear-gradient(155deg,#141e32,#11192a);border:1px solid var(--line);border-radius:18px;box-shadow:0 14px 36px #0002}.map-card{padding:19px}.map-top{display:flex;align-items:start;justify-content:space-between;gap:15px;margin-bottom:16px}.map-top h2{font-size:15px;margin:0 0 4px}.sub{color:var(--muted);font-size:12px}.map-badges{display:flex;gap:7px;flex-wrap:wrap;justify-content:end}.tag{font-size:11px;color:#b7c6df;border:1px solid #34415a;background:#19243a;border-radius:7px;padding:4px 7px}.stage{background:#0d1423;border:1px solid #26334b;border-radius:14px;padding:14px;overflow:auto}.grid{display:grid;grid-template-columns:repeat(15,minmax(24px,1fr));gap:4px;max-width:720px;margin:0 auto;touch-action:manipulation}.cell{aspect-ratio:1;border:1px solid #25324a;background:#151f33;border-radius:5px;position:relative;display:grid;place-items:center;min-width:22px;transition:background .12s,border-color .12s}.cell.open:hover{border-color:#6688c0;background:#1d2a42}.cell.route{background:#172d4a;border-color:#2d5a89}.cell.path-next:after{content:"";width:6px;height:6px;border-radius:50%;background:#77aaff;box-shadow:0 0 9px #77aaff}.cell.obstacle{background:repeating-linear-gradient(135deg,#63422b,#63422b 5px,#4c3528 5px,#4c3528 10px);border-color:#ac7546}.cell.obstacle:before{content:"";width:9px;height:9px;border:1px solid #ffc37b;border-radius:2px;transform:rotate(45deg);opacity:.8}.cell.goal{background:#153b34;border-color:#3d9b7d}.cell.start{background:#263c65;border-color:#6291e4}.cell.robot{z-index:2;background:#214470;border:2px solid #91c3ff;box-shadow:0 0 18px #70aaff77;color:white;font-size:19px;line-height:1}.robot-arrow{display:inline-block}.cell.sensor{box-shadow:inset 0 0 0 1px #e7bc6280;background-color:#3b3224}.cell.start.goal{background:#293a58}.cell.start:after{content:"S";position:absolute;top:1px;left:4px;font-size:9px;color:#dce9ff;font-weight:800}.cell.goal:after{content:"G";position:absolute;bottom:0;right:3px;font-size:9px;color:#b9f3df;font-weight:800}
     .legend{display:flex;gap:16px;flex-wrap:wrap;padding:13px 2px 1px;color:#9cacbf;font-size:11px}.legend span{display:flex;align-items:center;gap:6px}.swatch{width:12px;height:12px;border-radius:3px;background:#151f33;border:1px solid #33415a}.swatch.start{background:#263c65;border-color:#6291e4}.swatch.goal{background:#153b34;border-color:#3d9b7d}.swatch.route{background:#172d4a;border-color:#2d5a89}.swatch.obstacle{background:#63422b;border-color:#ac7546}.swatch.sensor{background:#3b3224;border-color:#e7bc62}
     .side{display:grid;gap:13px}.section{padding:16px}.section h3{font-size:13px;margin:0 0 12px}.toolgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.tool{background:#19243a;border:1px solid #30405d;border-radius:9px;padding:9px 8px;text-align:left;font-size:11px;color:#c4d0e5;display:flex;align-items:center;gap:7px}.tool.active{border-color:#77aaff;background:#203657;color:#e6f1ff;box-shadow:inset 0 0 0 1px #77aaff33}.tool .ico{font-size:14px;width:17px;text-align:center}.label{display:block;font-size:11px;color:#aab8cd;margin:13px 0 6px}.directions{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.dir{background:#19243a;border:1px solid #30405d;border-radius:8px;padding:8px 4px;color:#c9d5e7;font-size:12px}.dir.active{border-color:#77aaff;color:white;background:#203657}.hint{font-size:11px;color:#8192ae;margin:10px 0 0;min-height:30px}.form-select{width:100%;background:#0f1728;border:1px solid #34415a;color:#e5edfa;border-radius:8px;padding:9px 10px;font:inherit;font-size:12px}
+    .advanced{margin-top:12px;border:1px solid #2a3852;background:#10192a;border-radius:10px}.advanced summary{padding:11px 12px;color:#c6d6f0;font-size:12px;font-weight:650;cursor:pointer}.advanced[open] summary{border-bottom:1px solid #2a3852}.advanced-body{padding:0 12px 12px}.advanced-body .label:first-child{margin-top:12px}
     .btnrow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:13px}.btn{border:1px solid #34435d;background:#1a263b;color:#e5edfa;border-radius:9px;padding:10px;font-size:12px;font-weight:650}.btn.primary{background:linear-gradient(135deg,#78aaff,#578bf1);border-color:#7eb0ff;color:#101b30}.btn:disabled{opacity:.48;cursor:not-allowed}.btn.wide{grid-column:1/-1}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.stat{background:#0f1728;border:1px solid #253149;border-radius:10px;padding:10px 9px}.stat strong{display:block;font-size:20px;line-height:1.15;letter-spacing:-.04em}.stat small{font-size:10px;color:#91a2bd}.log{margin:10px 0 0;padding:0;list-style:none;max-height:132px;overflow:auto;display:grid;gap:7px}.log li{font-size:11px;color:#aab8ce;border-left:2px solid #526582;padding-left:8px}.log li.alert{border-color:var(--amber);color:#f1d4ad}.log li.ok{border-color:var(--mint);color:#bce9d8}.footnote{font-size:10px;color:#7586a2;line-height:1.5;margin:10px 0 0}.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;transition:.2s;background:#1c2a40;border:1px solid #49617f;color:#edf4ff;border-radius:10px;padding:10px 14px;box-shadow:0 8px 30px #0006;pointer-events:none;z-index:10;font-size:12px}.toast.show{opacity:1;transform:translate(-50%,0)}
-    @media(max-width:900px){.layout{grid-template-columns:1fr}.side{grid-template-columns:repeat(2,minmax(0,1fr))}.side .section:last-child{grid-column:1/-1}.grid{max-width:620px}}
+    @media(max-width:900px){.layout{grid-template-columns:1fr}.side{grid-template-columns:minmax(0,1.2fr) minmax(260px,.8fr)}.grid{max-width:620px}}
     @media(max-width:600px){.shell{padding:18px 12px 28px}.intro{display:block}.intro h1{font-size:23px}.status-pill{display:inline-flex;margin-top:12px}.map-card{padding:12px}.stage{padding:8px}.grid{gap:3px;min-width:330px}.cell{border-radius:3px;min-width:19px;touch-action:manipulation}.tool,.dir,.btn{min-height:44px}.side{grid-template-columns:1fr}.side .section:last-child{grid-column:auto}.map-top{display:block}.map-badges{justify-content:start;margin-top:10px}.phase{font-size:10px}}
   </style>
 </head>
@@ -35,32 +36,39 @@
         <div class="legend" aria-label="地图图例"><span><i class="swatch start"></i>起点</span><span><i class="swatch goal"></i>目标</span><span><i class="swatch route"></i>规划路线</span><span><i class="swatch obstacle"></i>已发现障碍</span><span><i class="swatch sensor"></i>传感器扫描范围</span></div>
       </section>
       <aside class="side">
-        <section class="card section"><h3>① 设定机器人与场地</h3>
+        <section class="card section"><h3>① 设置导航任务</h3>
           <div class="toolgrid" role="group" aria-label="地图编辑工具">
             <button class="tool active" data-tool="start"><span class="ico">⌖</span>设置起点</button>
             <button class="tool" data-tool="goal"><span class="ico">◎</span>设置目标</button>
             <button class="tool" data-tool="obstacle"><span class="ico">▧</span>放置障碍</button>
             <button class="tool" data-tool="erase"><span class="ico">⌫</span>擦除障碍</button>
           </div>
-          <label class="label" for="planner">路径规划方法</label>
-          <select id="planner" class="form-select"><option value="astar">A* · 每次重新计算</option><option value="dstar">D* Lite · 增量重新规划</option></select>
-          <label class="label" for="grid-size">地图尺寸</label>
-          <select id="grid-size" class="form-select"><option value="15">15 × 15（基准）</option><option value="25">25 × 25（较大地图）</option></select>
-          <label class="label" for="scenario">可重复测试场景</label>
-          <select id="scenario" class="form-select"><option value="open">开放房间</option><option value="blocker">正前方单一障碍</option><option value="detour">长墙绕行</option><option value="corridor">狭窄通道</option><option value="maze">交替开口迷宫</option><option value="no-route">目标被墙隔开</option></select>
           <label class="label">机器人初始朝向</label>
           <div class="directions" role="group" aria-label="初始朝向">
             <button class="dir active" data-dir="N">↑ 北</button><button class="dir" data-dir="E">→ 东</button><button class="dir" data-dir="S">↓ 南</button><button class="dir" data-dir="W">← 西</button>
           </div>
-          <p id="edit-hint" class="hint">点击地图放置机器人起点。</p>
-          <div class="btnrow"><button id="demo" class="btn">载入选定场景</button><button id="clear" class="btn">清空场地</button><button id="start-run" class="btn primary wide">▶ 开始导航</button><button id="benchmark" class="btn wide">重复比较（10 轮·480 次）</button><button id="replay-benchmark" class="btn wide">固定更新回放（10 轮·2040 次）</button></div>
+          <p id="edit-hint" class="hint">第一步：点击地图放置机器人起点。</p>
+          <div class="btnrow"><button id="start-run" class="btn primary wide">▶ 开始导航</button><button id="clear" class="btn wide">清空场地</button></div>
+          <details class="advanced"><summary>算法、地图尺寸和预设场景</summary><div class="advanced-body">
+            <label class="label" for="planner">路径规划方法</label>
+            <select id="planner" class="form-select"><option value="astar">A* · 每次重新计算</option><option value="dstar">D* Lite · 增量重新规划</option></select>
+            <label class="label" for="grid-size">地图尺寸</label>
+            <select id="grid-size" class="form-select"><option value="15">15 × 15（基准）</option><option value="25">25 × 25（较大地图）</option></select>
+            <label class="label" for="scenario">可重复测试场景</label>
+            <select id="scenario" class="form-select"><option value="open">开放房间</option><option value="blocker">正前方单一障碍</option><option value="detour">长墙绕行</option><option value="corridor">狭窄通道</option><option value="maze">交替开口迷宫</option><option value="no-route">目标被墙隔开</option></select>
+            <button id="demo" class="btn wide" style="margin-top:10px">载入选定场景</button>
+          </div></details>
         </section>
         <section class="card section"><h3>② 运行状态</h3>
           <div class="stats"><div class="stat"><strong id="distance">0</strong><small>移动格数</small></div><div class="stat"><strong id="replans">0</strong><small>重新规划</small></div><div class="stat"><strong id="found">0</strong><small>发现障碍</small></div><div class="stat"><strong id="expanded">0</strong><small>展开节点</small></div><div class="stat"><strong id="plan-time">0.00</strong><small>规划毫秒</small></div></div>
           <div class="label">任务记录</div><ul class="log" id="log"><li>设定起点和目标，然后开始导航。</li></ul>
-          <button id="export-results" class="btn wide" style="margin-top:10px">导出实验记录 CSV</button>
-          <button id="export-replay" class="btn wide" style="margin-top:8px">导出固定更新回放 CSV</button>
-          <p class="footnote">批量比较包含 6 个固定场景和 18 个可复现随机地图（低、中、高三种障碍密度，各 6 个种子），按当前地图尺寸运行；随机地图也会变化起点、朝向和目标。两种规划器各运行 10 轮。传感器扫描前方 3 格；真实机器人阶段再替换成实体测距传感器。</p>
+          <details class="advanced"><summary>实验比较和数据导出</summary><div class="advanced-body">
+            <button id="benchmark" class="btn wide" style="margin-top:12px">重复比较（10 轮·480 次）</button>
+            <button id="replay-benchmark" class="btn wide" style="margin-top:8px">固定更新回放（10 轮·2040 次）</button>
+            <button id="export-results" class="btn wide" style="margin-top:14px">导出实验记录 CSV</button>
+            <button id="export-replay" class="btn wide" style="margin-top:8px">导出固定更新回放 CSV</button>
+            <p class="footnote">批量比较包含 6 个固定场景和 18 个可复现随机地图（低、中、高三种障碍密度，各 6 个种子），按当前地图尺寸运行；随机地图也会变化起点、朝向和目标。两种规划器各运行 10 轮。传感器扫描前方 3 格；真实机器人阶段再替换成实体测距传感器。</p>
+          </div></details>
         </section>
       </aside>
     </div>
