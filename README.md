@@ -11,7 +11,7 @@ An early browser-based simulator for a CS final-year project about indoor robot 
 ## Current prototype behavior
 
 - Set the robot's start cell, initial facing direction, and destination.
-- Use **Restart same test** to rerun the current map from the same start, goal, and initial heading while clearing discovered obstacles and run metrics. Use **New test (reset to North)** to clear the room and return the heading to North.
+- To compare planners on the same map, finish a run, choose the other planner, then use **Restart same test**. It resets the robot to the original start, clears discovered obstacles and run metrics, and preserves the room, obstacles, goal, and initial heading. Use **New test (reset to North)** to clear the room and return the heading to North.
 - Place obstacles in the scenario; they appear faintly on the operator's map but remain unknown to the robot during a run.
 - The simulated sensor scans forward and marks discovered obstacles with a stronger color as the robot approaches.
 - Select A* (recompute) or D* Lite (incremental replanning) for cells not yet known to be blocked.
